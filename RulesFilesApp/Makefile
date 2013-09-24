@@ -8,8 +8,8 @@ APPNAME = RulesFiles
 
 #USR_CFLAGS += 
 
-ETC += ColorRules.CTL
-ETC += GraphicRules.CTL
+TEMPLATES += ColorRules
+TEMPLATES += GraphicRules
 
 include $(TOP)/configure/RULES
 
