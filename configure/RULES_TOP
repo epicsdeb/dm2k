@@ -1,2 +1,0 @@
-include $(RULES)/configure/RULES_TOP
-RSYNC_DIST_VERSION_FILE=.version
