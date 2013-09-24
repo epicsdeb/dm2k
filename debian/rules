@@ -1,0 +1,114 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+# Comment this to not authorize the XRT/graph version
+#    in this case the binary will build, but not be able to use XRT/graph
+XRTHOME=/opt/xrt
+XRTHOST=builder@aragon.acc.bessy.de
+SSHOPTS = -i /etc/rebuildd/mnt/id_rsa -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null 
+
+# Use rpath for shared private library location, link only --as-needed
+export DEB_LDFLAGS_MAINT_APPEND = -Wl,-rpath,/usr/lib/$(DEB_HOST_MULTIARCH)/dm2k -Wl,--as-needed
+
+ifeq "$(DEB_BUILD_ARCH)" "i386"
+EPICS_HOST_ARCH:=linux-x86
+else ifeq "$(DEB_BUILD_ARCH)" "amd64"
+EPICS_HOST_ARCH:=linux-x86_64
+else
+EPICS_HOST_ARCH:=$(shell /usr/lib/epics/startup/EpicsHostArch)
+endif
+
+DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
+
+DEB_VERSION := $(shell dpkg-parsechangelog | egrep '^Version:' | cut -f 2 -d ' ')
+DEB_NOEPOCH_VERSION := $(shell echo $(DEB_VERSION) | cut -d: -f2-)
+DEB_UPSTREAM_VERSION := $(shell echo $(DEB_NOEPOCH_VERSION) | sed 's/-[^-]*$$//')
+
+# Chop out the source version from changelog (ie 2.6.2)
+SOV:=$(shell echo "$(DEB_UPSTREAM_VERSION)" | cut -d+ -f1)
+
+# DM2K libraries
+dm2klibs += ANLwidgets
+dm2klibs += GraphX
+dm2klibs += Jpt
+dm2klibs += PrintUtils
+dm2klibs += Unix
+
+instroot=$(CURDIR)/debian/tmp
+bindir=$(instroot)/usr/bin
+libdir=$(instroot)/usr/lib
+
+epicsroot=$(instroot)/usr/lib/epics
+epicslibs=$(epicsroot)/lib/$(EPICS_HOST_ARCH)
+epicsbins=$(epicsroot)/bin/$(EPICS_HOST_ARCH)
+
+%:
+	dh $@ --with epics -Sepicsmake
+
+override_dh_auto_clean:
+	rm -fr configure
+	ln -sf /usr/lib/epics/extensions/configure .
+	dh_auto_clean
+	rm -f configure
+	rm -rf bin include lib
+
+override_dh_auto_build:
+	ln -sf /usr/lib/epics/extensions/configure .
+	dh_auto_build -- SHARED_LIBRARIES=YES STATIC_BUILD=NO SHRLIB_VERSION=$(SOV) USER=Debian XRTHOME=$(XRTHOME) \
+	USR_LDFLAGS_Linux="`dpkg-buildflags --get LDFLAGS`" \
+	USR_CFLAGS_Linux="`dpkg-buildflags --get CFLAGS`" \
+	USR_CPPFLAGS_Linux="`dpkg-buildflags --get CPPFLAGS`"
+
+override_dh_auto_install:
+	dh_auto_install -- SHARED_LIBRARIES=YES STATIC_BUILD=NO SHRLIB_VERSION=$(SOV) \
+	USR_LDFLAGS_Linux="`dpkg-buildflags --get LDFLAGS`"
+
+override_dh_install:
+	install -d $(bindir)
+	install -d $(libdir)/$(DEB_HOST_MULTIARCH)/dm2k
+
+ifeq "$(DEB_BUILD_ARCH)" "i386"
+ifdef XRTHOME
+	@echo Patching for XRT-License...
+	@scp $(SSHOPTS) -q $(epicsbins)/dm2k-xrt $(XRTHOST):/tmp/dm2k
+	@ssh $(SSHOPTS) $(XRTHOST) XRTHOME=$(XRTHOME) $(XRTHOME)/bin/xrt_auth /tmp/dm2k
+	@scp $(SSHOPTS) -q $(XRTHOST):/tmp/dm2k $(epicsbins)/dm2k-xrt
+	@scp $(SSHOPTS) -q $(epicsbins)-debug/dm2k-xrt $(XRTHOST):/tmp/dm2k
+	@ssh $(SSHOPTS) $(XRTHOST) XRTHOME=$(XRTHOME) $(XRTHOME)/bin/xrt_auth /tmp/dm2k
+	@scp $(SSHOPTS) -q $(XRTHOST):/tmp/dm2k $(epicsbins)-debug/dm2k-xrt
+	@echo done.
+endif
+endif
+	install -m 755 -t $(bindir) $(epicsbins)/*
+	rm -rf $(epicsbins)
+
+	# This works for non-Multi-Arch EPICS base and has to be changed later on ##########
+	# Private libraries go in /usr/lib/dm2k
+	for ff in $(dm2klibs);do \
+		mv $(libdir)/lib$$ff.so.$(SOV) $(libdir)/$(DEB_HOST_MULTIARCH)/dm2k; \
+		rm -f $(epicslibs)/lib$$ff.so; \
+		ln -s ../../../$(DEB_HOST_MULTIARCH)/dm2k/lib$$ff.so.$(SOV) $(epicslibs)/lib$$ff.so; \
+	done
+
+	dh_install
+
+override_dh_installchangelogs:
+	dh_installchangelogs
+
+	# Use links for dm2k-*-dev
+	rm -fr $(CURDIR)/debian/dm2k-jpt-dev/usr/share/doc/dm2k-jpt-dev
+	ln -s dm2k-jpt $(CURDIR)/debian/dm2k-jpt-dev/usr/share/doc/dm2k-jpt-dev
+ifeq "$(DEB_BUILD_ARCH)" "i386"
+	rm -fr $(CURDIR)/debian/dm2k-xrt-dev/usr/share/doc/dm2k-xrt-dev
+	ln -s dm2k-xrt $(CURDIR)/debian/dm2k-xrt-dev/usr/share/doc/dm2k-xrt-dev
+endif
+
+override_dh_makeshlibs:
+	# Only private libraries: do not add calls to ldscripts in postinst and postrm scripts
+	dh_makeshlibs -n
+
+# Commands not to run:
+override_dh_auto_test:

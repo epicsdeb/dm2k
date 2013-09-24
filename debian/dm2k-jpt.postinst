@@ -1,0 +1,11 @@
+#!/bin/sh
+
+set -e
+
+if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] ; then
+    update-alternatives \
+        --install /usr/bin/dm2k dm2k /usr/bin/dm2k-jpt 100 \
+        --slave /usr/share/man/man1/dm2k.1.gz dm2k.1.gz /usr/share/man/man1/dm2k-jpt.1.gz
+fi
+
+#DEBHELPER#

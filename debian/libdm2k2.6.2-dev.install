@@ -1,0 +1,5 @@
+usr/lib/epics/lib/linux-*/libANLwidgets.*
+usr/lib/epics/lib/linux-*/libJpt.*
+usr/lib/epics/lib/linux-*/libGraphX.*
+usr/lib/epics/lib/linux-*/libUnix.*
+usr/lib/epics/lib/linux-*/libPrintUtils.*

@@ -1,0 +1,10 @@
+dm2k for Debian
+---------------
+
+The dm2k-jpt package uses the free Jpt plotting library, that is
+a drop-in for the commercial XRT graph widget.
+
+The dm2k-xrt package uses the commercial XRT graph widget. A valid
+XRT license is required to buyild the package.
+
+ -- Ralph Lange <Ralph.Lange@gmx.de>  Wed, 29 May 2013 13:38:03 +0200

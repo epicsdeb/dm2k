@@ -1,0 +1,164 @@
+.\"                                      Hey, EMACS: -*- nroff -*-
+.\" (C) Copyright 2013 Ralph Lange <Ralph Lange <Ralph.Lange@gmx.de>>,
+.\"
+.\" First parameter, NAME, should be all caps
+.\" Second parameter, SECTION, should be 1-8, maybe w/ subsection
+.\" other parameters are allowed: see man(7), man(1)
+.TH DM2K 1 "Sep 18, 2013" "EPICS Tools"
+.\" Please adjust this date whenever revising the manpage.
+.\"
+.\" Some roff macros, for reference:
+.\" .nh        disable hyphenation
+.\" .hy        enable hyphenation
+.\" .ad l      left justify
+.\" .ad b      justify to both left and right margins
+.\" .nf        disable filling
+.\" .fi        enable filling
+.\" .br        insert line break
+.\" .sp <n>    insert n+1 empty lines
+.\" for manpage-specific macros, see man(7)
+.SH NAME
+dm2k \- Motif Display Manager for EPICS
+.SH SYNOPSIS
+.B dm2k
+.B [\-x|\-e] [options...] [-displayFont \fIfont\fP]
+.B [\-macro \fI"<name>=<value>,<name>=<value>..."\fP]
+.B \fIdisplay files\fP...
+.SH DESCRIPTION
+This manual page documents briefly the
+.B dm2k
+command.
+.PP
+.\" TeX users may be more comfortable with the \fB<whatever>\fP and
+.\" \fI<whatever>\fP escape sequences to invode bold face and italics,
+.\" respectively.
+\fBdm2k\fP is a program that displays EPICS operator panels
+described in display files.
+.SH PARAMETERS
+.TP
+.B \-displayFont
+Select alias for scalable fonts.
+.TP
+.B \-macro
+Apply macro substitution.
+.TP
+.B display files
+Display (.adl) or faceplate (.mfp) files to open. Files are searched
+in the EPICS_DISPLAY_PATH (see below).
+.SH OPTIONS
+.TP
+.B \-?, \-help
+Show command summary.
+.TP
+.B \-version
+Show version of program and exit.
+.TP
+.B \-readonly
+Run in read only mode (no CA put).
+.TP
+.B \-local
+Don't participate in remote display protocol.
+.TP
+.B \-cleanup
+Support remote display protocol, ignore existing instances.
+.TP
+.B \-cmap
+Use private color map.
+.TP
+.B \-dump
+Dump compiled-in fallback resources to stdout and exit.
+.TP
+.B \-bigMousePointer
+Use big cursors.
+.TP
+.B \-promptExit
+Prompt user before exiting \fBdm2k\fP.
+.TP
+.B \-dontPromptExit
+Don't prompt user before exiting \fBdm2k\fP. (default)
+.TP
+.B \-silent
+Reduced error messages.
+.TP
+.B \-wmPositionPolicy
+Define the WM positioning policy: FRAME or USER.
+.TP
+.B \-verbose
+Display verbose error messages.
+.TP
+.B \-debug
+Provide debugging information.
+.TP
+.B \-synchro
+Run X11 protocol in synchronous mode.
+.SH "ENVIRONMENT VARIABLES"
+.TP
+.B DM2K_READ_ONLY
+Open panels in execute-mode but read only.
+.br
+(default unset)
+.TP
+.B DM2K_WM_POSITION_POLICY
+FRAME/USER defines the WM positioning policy.
+.br
+(default unset)
+.TP
+.B DM2K_COLOR_RULE
+Defines the name of color rule file.
+If not set, \fBdm2k\fP reads file ColorRules in current directory.
+If there is no such file, it uses the default.
+You can find an example ColorRules file in /usr/share/doc/dm2k.
+.br
+(default: 'ColorRules')
+.TP
+.B DM2K_GRAPHIC_RULE
+Defines the name of graphic rule file.
+If not set, \fBdm2k\fP reads file GraphicRules in current directory.
+You can find an example GraphicRules file in /usr/share/doc/dm2k.
+.br
+(default: 'GraphicRules')
+.TP
+.B EPICS_DM2K_DEFAULT_MB3_DISPLAY
+Default adl-file to be called on MB3-click on
+various elements. It is given the macro 'record=<PV>'
+of the PV of the selected element.
+.br
+(default: unset)
+.TP
+.B DM2K_MAIL_CMD
+Mail-command to use in the Message Window.
+.br
+Called as: '<mail_cmd> \-s <subject> <recipient>'
+.br
+with message body piped to stdin.
+.br
+(default: 'mail')
+.TP
+.B EPICS_DISPLAY_PATH
+Display files (.adl, .mfp and .gif) are searched
+in these colon-separated directories.
+.br
+(default '.')
+.TP
+.B PSPRINTER
+PostScript printer used for printing displays.
+.br
+(default: unset)
+.TP
+.B EPICS_PS_PRINT_CMD
+Command the PostScript output to be printed is piped through.
+E.g., 'lp' or 'tee LastPrintout.ps | lp' or 'ghostview \-'.
+.br
+(default: unset)
+.SH AUTHORS
+.IP 
+dm2k Copyright (C) 1993-2013
+ developed as edd/dm
+    at LANL by J. O. Hill
+ upgraded to medm
+    at APS/ANL by M. Anderson, F. Vong, K. Evans
+ upgraded to medm/DESY (medm 2.4)
+    at DESY by M. Clausen, V. Romanovski, X. Geng
+    at CERN by F. Perriollat
+    at BESSY by T. Birke, T. Straumann (PTB)
+ debianized by R. Lange (HZB/BESSY II)

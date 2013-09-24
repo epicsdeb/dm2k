@@ -1,0 +1,101 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: DM2K
+
+Files: *
+Copyright: 1993 University of Chicago
+Comment:
+ developed as edd/dm
+    at LANL by J. O. Hill
+ upgraded to medm
+    at APS/ANL by M. Anderson, F. Vong, K. Evans
+ upgraded to medm/DESY (medm 2.4)
+    at DESY by M. Clausen, V. Romanovski, X. Geng
+    at CERN by F. Perriollat
+    at BESSY by T. Birke, T. Straumann (PTB)
+ relaunched as dm2k.
+License:
+ THE FOLLOWING IS A NOTICE OF COPYRIGHT, AVAILABILITY OF THE CODE,
+ AND DISCLAIMER WHICH MUST BE INCLUDED IN THE PROLOGUE OF THE CODE
+ AND IN ALL SOURCE LISTINGS OF THE CODE.
+ .
+ (C)  COPYRIGHT 1993 UNIVERSITY OF CHICAGO
+ .
+ Argonne National Laboratory (ANL), with facilities in the States of
+ Illinois and Idaho, is owned by the United States Government, and
+ operated by the University of Chicago under provision of a contract
+ with the Department of Energy.
+ .
+ Portions of this material resulted from work developed under a U.S.
+ Government contract and are subject to the following license:  For
+ a period of five years from March 30, 1993, the Government is
+ granted for itself and others acting on its behalf a paid-up,
+ nonexclusive, irrevocable worldwide license in this computer
+ software to reproduce, prepare derivative works, and perform
+ publicly and display publicly.  With the approval of DOE, this
+ period may be renewed for two additional five year periods.
+ Following the expiration of this period or periods, the Government
+ is granted for itself and others acting on its behalf, a paid-up,
+ nonexclusive, irrevocable worldwide license in this computer
+ software to reproduce, prepare derivative works, distribute copies
+ to the public, perform publicly and display publicly, and to permit
+ others to do so.
+ .
+ *****************************************************************
+                                 DISCLAIMER
+ *****************************************************************
+ .
+ NEITHER THE UNITED STATES GOVERNMENT NOR ANY AGENCY THEREOF, NOR
+ THE UNIVERSITY OF CHICAGO, NOR ANY OF THEIR EMPLOYEES OR OFFICERS,
+ MAKES ANY WARRANTY, EXPRESS OR IMPLIED, OR ASSUMES ANY LEGAL
+ LIABILITY OR RESPONSIBILITY FOR THE ACCURACY, COMPLETENESS, OR
+ USEFULNESS OF ANY INFORMATION, APPARATUS, PRODUCT, OR PROCESS
+ DISCLOSED, OR REPRESENTS THAT ITS USE WOULD NOT INFRINGE PRIVATELY
+ OWNED RIGHTS.
+ .
+ *****************************************************************
+ LICENSING INQUIRIES MAY BE DIRECTED TO THE INDUSTRIAL TECHNOLOGY
+ DEVELOPMENT CENTER AT ARGONNE NATIONAL LABORATORY (708-252-2000).
+
+Files: dm2kApp/jpt/*
+Copyright: 1992 by University of Paderborn
+           1990,1991 by the Massachusetts Institute of Technology
+License:
+ All rights reserved.
+ .
+ Permission to use, copy, modify, and distribute this software and its
+ documentation for any purpose and without fee is hereby granted,
+ provided that the above copyright notice appear in all copies and that
+ both that copyright notice and this permission notice appear in
+ supporting documentation, and that the name of the firms, institutes
+ or employers of the authors not be used in advertising or publicity
+ pertaining to distribution of the software without specific, written
+ prior permission.
+ .
+ THE AUTHORS AND THEIR FIRMS, INSTITUTES OR EMPLOYERS DISCLAIM ALL WARRANTIES
+ WITH REGARD TO THIS SOFTWARE, INCLUDING ALL IMPLIED WARRANTIES OF
+ MERCHANTABILITY AND FITNESS, IN NO EVENT SHALL THE AUTHORS AND THEIR FIRMS,
+ INSTITUTES OR EMPLOYERS BE LIABLE FOR ANY SPECIAL, INDIRECT OR CONSEQUENTIAL
+ DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR
+ PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS
+ ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS
+ SOFTWARE.
+
+
+Files: debian/*
+Copyright: 2013 Ralph Lange <Ralph Lange <Ralph.Lange@gmx.de>>
+License: GPL-2+
+ This package is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+ .
+ This package is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program. If not, see <http://www.gnu.org/licenses/>
+ .
+ On Debian systems, the complete text of the GNU General
+ Public License version 2 can be found in "/usr/share/common-licenses/GPL-2".
