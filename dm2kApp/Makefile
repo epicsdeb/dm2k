@@ -3,9 +3,6 @@
 #
 TOP = ..
 include $(TOP)/configure/CONFIG
-DIRS = graphX graphX/printUtils xc libUnix
-ifndef XRTHOME
-DIRS += jpt
-endif
+DIRS = graphX/printUtils graphX xc libUnix jpt
 DIRS += dm2k
 include $(TOP)/configure/RULES_DIRS
