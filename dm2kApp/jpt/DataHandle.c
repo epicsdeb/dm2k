@@ -1641,7 +1641,7 @@ int PlotSetLineStyle(Widget w, PlotDataStyle *ds)
   display = XtDisplay(XtParent(w));
   if (DefaultDepthOfScreen (DefaultScreenOfDisplay(display)) !=1) {
     if (ds->color) {
-      sprintf(from_s, ds->color);
+      strncpy(from_s, ds->color, 255);
       from_value.size = strlen(from_s) + 1;
       from_value.addr = from_s;
       XtConvert(w, XmRString, &from_value, XmRPixel, &to_value);
@@ -1649,7 +1649,7 @@ int PlotSetLineStyle(Widget w, PlotDataStyle *ds)
       XtSetArg(args[j], XtNforeground, fore); j++;
       }
     if (ds->pcolor) {
-      sprintf(from_s, ds->pcolor);
+      strncpy(from_s, ds->pcolor, 255);
       from_value.size = strlen(from_s) + 1;
       from_value.addr = from_s;
       XtConvert(w, XmRString, &from_value, XmRPixel, &to_value);
@@ -1671,14 +1671,14 @@ Pixel PlotColor(Widget w, char *name, char *default_name)
   char from_s[256]; 
 
   if ((w ==NULL) ||(name ==NULL)) return(1);
-    sprintf(from_s, name);
+    strncpy(from_s, name, 255);
     from_value.size = strlen(from_s) + 1;
     from_value.addr = from_s;
     XtConvert(w, XmRString, &from_value, XmRPixel, &to_value);
     if (to_value.addr) fore = *(int *)to_value.addr;
     else {
       printf("Warning: can not allocate pixel for color %s\n", name);
-      sprintf(from_s, default_name);
+      strncpy(from_s, default_name, 255);
       from_value.size = strlen(from_s) + 1;
       from_value.addr = from_s;
       XtConvert(w, XmRString, &from_value, XmRPixel, &to_value);
@@ -1697,7 +1697,7 @@ Pixel WnColorB(Widget w, char * cname)
   char from_s[256]; 
 
   if ((cname == NULL) || (w ==NULL)) return(1);
-    sprintf(from_s, cname);
+    strncpy(from_s, cname, 255);
     from_value.size = strlen(from_s) + 1;
     from_value.addr = from_s;
     XtConvert(w, XmRString, &from_value, XmRPixel, &to_value);
@@ -1719,7 +1719,7 @@ Pixel WnColorF(Widget w, char * cname)
   char from_s[256]; 
 
   if ((w==NULL)||(cname==NULL))return(1);
-    sprintf(from_s, cname);
+    strncpy(from_s, cname, 255);
     from_value.size = strlen(from_s) + 1;
     from_value.addr = from_s;
     XtConvert(w, XmRString, &from_value, XmRPixel, &to_value);
@@ -1741,7 +1741,7 @@ Pixel ColorNameToPixel(Widget w, char * cname)
 
   if ((w==NULL)||(cname==NULL)) return(1);
   /*if (DefaultDepthOfScreen (DefaultScreenOfDisplay(display)) !=1) {*/
-    sprintf(from_s, cname);
+    strncpy(from_s, cname, 255);
     from_value.size = strlen(from_s) + 1;
     from_value.addr = from_s;
     XtConvert(w, XmRString, &from_value, XmRPixel, &to_value);
@@ -1749,7 +1749,7 @@ Pixel ColorNameToPixel(Widget w, char * cname)
     else {
       printf("Warning: can not allocate pixel for color %s\n", cname);
       cname = "white";
-      sprintf(from_s, cname);
+      strncpy(from_s, cname, 255);
       from_value.size = strlen(from_s) + 1;
       from_value.addr = from_s;
       XtConvert(w, XmRString, &from_value, XmRPixel, &to_value);
