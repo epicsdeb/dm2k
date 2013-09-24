@@ -1,0 +1,62 @@
+! XRT/graph warning and error messages
+
+Axis.BadRange: Axis range is too small.\n\tSetting AxisMaxUseDefault to True
+Axis.NegativeRange: AxisMin must be less than AxisMax.\n\tSetting AxisMaxUseDefault to True
+Axis.NegativeValue: AxisMax must be be positive.\n\tSetting AxisMaxUseDefault to True
+Axis.NegativeValue: AxisMin must be be positive.\n\tSetting AxisMinUseDefault to True
+Axis.NegativeValue: XMax must be be positive.\n\tSetting XMaxUseDefault to True
+Axis.NegativeValue: XMin must be be positive.\n\tSetting XMinUseDefault to True
+Axis.NegativeValue: YMax must be be positive.\n\tSetting YMaxUseDefault to True
+Axis.NegativeValue: YMin must be be positive.\n\tSetting YMinUseDefault to True
+BarClusterOverlap.BadValue: BarClusterOverlap must be between %s and %s
+BarClusterWidth.BadValue: BarClusterWidth must be between %s and %s
+FooterBorderWidth.BadValue: FooterBorderWidth must be between %s and %s
+FrontDataset.BadValue: FrontDataset must be either 1 or 2
+GraphBorderWidth.BadValue: GraphBorderWidth must be between %s and %s
+GraphDepth.BadValue: GraphDepth must be between %s and %s
+GraphInclination.BadValue: GraphInclination must be between %s and %s
+GraphMarginBottomUseDefault.BadValue: Cannot set GraphMarginBottomUseDefault to False until a value has been calculated
+GraphMarginLeftUseDefault.BadValue: Cannot set GraphMarginLeftUseDefault to False until a value has been calculated
+GraphMarginRightUseDefault.BadValue: Cannot set GraphMarginRightUseDefault to False until a value has been calculated
+GraphMarginTopUseDefault.BadValue: Cannot set GraphMarginTopUseDefault to False until a value has been calculated
+GraphRotation.BadValue: GraphRotation must be between %s and %s
+HeaderBorderWidth.BadValue: HeaderBorderWidth must be between %s and %s
+LegendBorderWidth.BadValue: LegendBorderWidth must be between %s and %s
+MapAction.BadParams: MapAction: too many parameters passed
+MapAction.BadParams: MapAction: unrecognized parameter %s
+MarkerDataset.BadValue: MarkerDataset must be either 1 or 2
+PickAction.BadParams: PickAction: too many parameters passed
+PickAction.BadParams: PickAction: unrecognized parameter %s
+PickAction.BadParams: PickAction: unrecognized parameter %s
+TimeFormatUseDefault.BadValue: Cannot set TimeFormatUseDefault to False until a value has been calculated
+XAxisMaxUseDefault.BadValue: Cannot set XAxisMaxUseDefault to False until a value has been calculated
+XAxisMinUseDefault.BadValue: Cannot set XAxisMinUseDefault to False until a value has been calculated
+XGrid.BadValue: Value for XGrid can't be negative: changing %s to %s
+XGridUseDefault.BadValue: Cannot set XGridUseDefault to False until a value has been calculated
+XMaxUseDefault.BadValue: Cannot set XMaxUseDefault to False until a value has been calculated
+XMinUseDefault.BadValue: Cannot set XMinUseDefault to False until a value has been calculated
+XNum.BadValue: Value for XNum can't be negative: changing %s to %s
+XNumUseDefault.BadValue: Cannot set XNumUseDefault to False until a value has been calculated
+XOriginUseDefault.BadValue: Cannot set XOriginUseDefault to False until a value has been calculated
+XTick.BadValue: Value for XTick can't be negative: changing %s to %s
+XTickUseDefault.BadValue: Cannot set XTickUseDefault to False until a value has been calculated
+Y2AxisMaxUseDefault.BadValue: Cannot set Y2AxisMaxUseDefault to False until a value has been calculated
+Y2AxisMinUseDefault.BadValue: Cannot set Y2AxisMinUseDefault to False until a value has been calculated
+Y2MaxUseDefault.BadValue: Cannot set Y2MaxUseDefault to False until a value has been calculated
+Y2MinUseDefault.BadValue: Cannot set Y2MinUseDefault to False until a value has been calculated
+Y2Num.BadValue: Value for Y2Num can't be negative: changing %s to %s
+Y2NumUseDefault.BadValue: Cannot set Y2NumUseDefault to False until a value has been calculated
+Y2Tick.BadValue: Value for Y2Tick can't be negative: changing %s to %s
+Y2TickUseDefault.BadValue: Cannot set Y2TickUseDefault to False until a value has been calculated
+YAxisMaxUseDefault.BadValue: Cannot set YAxisMaxUseDefault to False until a value has been calculated
+YAxisMinUseDefault.BadValue: Cannot set YAxisMinUseDefault to False until a value has been calculated
+YGrid.BadValue: Value for YGrid can't be negative: changing %s to %s
+YGridUseDefault.BadValue: Cannot set YGridUseDefault to False until a value has been calculated
+YMaxUseDefault.BadValue: Cannot set YMaxUseDefault to False until a value has been calculated
+YMinUseDefault.BadValue: Cannot set YMinUseDefault to False until a value has been calculated
+YNum.BadValue: Value for YNum can't be negative: changing %s to %s
+YNumUseDefault.BadValue: Cannot set YNumUseDefault to False until a value has been calculated
+YOriginUseDefault.BadValue: Cannot set YOriginUseDefault to False until a value has been calculated
+YTick.BadValue: Value for YTick can't be negative: changing %s to %s
+YTickUseDefault.BadValue: Cannot set YTickUseDefault to False until a value has been calculated
+double buffer.BadAlloc: Server can't allocate Pixmap - double buffering turned off
