@@ -1,0 +1,448 @@
+!*****************************************************************************
+!*
+!* Copyright (c) 2001, SITRAKA INC.  All Rights Reserved.
+!* http://www.sitraka.com
+!*
+!* This file is provided for demonstration and educational uses only.
+!* Permission to use, copy, modify and distribute this file for
+!* any purpose and without fee is hereby granted, provided that the
+!* above copyright notice and this permission notice appear in all
+!* copies, and that the name of Sitraka Software not be used in 
+!* advertising or publicity pertaining to this material without the 
+!* specific, prior written permission of an authorized representative of
+!* Sitraka Software.
+!*
+!* SITRAKA SOFTWARE MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE 
+!* SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT 
+!* LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A 
+!* PARTICULAR PURPOSE, OR NON-INFRINGEMENT. SITRAKA SOFTWARE SHALL NOT BE 
+!* LIABLE FOR ANY DAMAGES SUFFERED BY USERS AS A RESULT OF USING, MODIFYING 
+!* OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES.
+!*
+!*****************************************************************************/
+
+!*
+!* XrtGraph.uil - XRT/graph widget UIL header file
+!*
+!* SCCSID: @(#)XrtGraph.uil	4.4 01/04/09 KL Group Inc.
+!*/
+
+! resources
+
+value
+	XtNxrtAxisBoundingBox : private argument ('xrtAxisBoundingBox', boolean);
+	XtNxrtBackgroundColor : private argument ('xrtBackgroundColor', string);
+	XtNxrtBarClusterOverlap : private argument ('xrtBarClusterOverlap', integer);
+	XtNxrtBarClusterWidth : private argument ('xrtBarClusterWidth', integer);
+	XtNxrtDataAreaBackgroundColor : private argument ('xrtDataAreaBackgroundColor', string);
+	XtNxrtDataStyles2UseDefault : private argument ('xrtDataStyles2UseDefault', boolean);
+	XtNxrtDataStylesUseDefault : private argument ('xrtDataStylesUseDefault', boolean);
+	XtNxrtDebug : private argument ('xrtDebug', boolean);
+	XtNxrtDoubleBuffer : private argument ('xrtDoubleBuffer', boolean);
+	XtNxrtFooterAdjust : private argument ('xrtFooterAdjust', integer);
+	XtNxrtFooterBackgroundColor : private argument ('xrtFooterBackgroundColor', string);
+	XtNxrtFooterBorder : private argument ('xrtFooterBorder', integer);
+	XtNxrtFooterBorderWidth : private argument ('xrtFooterBorderWidth', integer);
+	XtNxrtFooterForegroundColor : private argument ('xrtFooterForegroundColor', string);
+	XtNxrtFooterX : private argument ('xrtFooterX', integer);
+	XtNxrtFooterXUseDefault : private argument ('xrtFooterXUseDefault', boolean);
+	XtNxrtFooterY : private argument ('xrtFooterY', integer);
+	XtNxrtFooterYUseDefault : private argument ('xrtFooterYUseDefault', boolean);
+	XtNxrtForegroundColor : private argument ('xrtForegroundColor', string);
+	XtNxrtFrontDataset : private argument ('xrtFrontDataset', integer);
+	XtNxrtGraphBackgroundColor : private argument ('xrtGraphBackgroundColor', string);
+	XtNxrtGraphBorder : private argument ('xrtGraphBorder', integer);
+	XtNxrtGraphBorderWidth : private argument ('xrtGraphBorderWidth', integer);
+	XtNxrtGraphDepth : private argument ('xrtGraphDepth', integer);
+	XtNxrtGraphForegroundColor : private argument ('xrtGraphForegroundColor', string);
+	XtNxrtGraphHeight : private argument ('xrtGraphHeight', integer);
+	XtNxrtGraphHeightUseDefault : private argument ('xrtGraphHeightUseDefault', boolean);
+	XtNxrtGraphInclination : private argument ('xrtGraphInclination', integer);
+	XtNxrtGraphMarginBottom : private argument ('xrtGraphMarginBottom', integer);
+	XtNxrtGraphMarginBottomUseDef : private argument ('xrtGraphMarginBottomUseDefault', boolean);  ! truncated
+	XtNxrtGraphMarginLeft : private argument ('xrtGraphMarginLeft', integer);
+	XtNxrtGraphMarginLeftUseDefault : private argument ('xrtGraphMarginLeftUseDefault', boolean);
+	XtNxrtGraphMarginRight : private argument ('xrtGraphMarginRight', integer);
+	XtNxrtGraphMarginRightUseDef : private argument ('xrtGraphMarginRightUseDefault', boolean);   ! truncated
+	XtNxrtGraphMarginTop : private argument ('xrtGraphMarginTop', integer);
+	XtNxrtGraphMarginTopUseDefault : private argument ('xrtGraphMarginTopUseDefault', boolean);
+	XtNxrtGraphRotation : private argument ('xrtGraphRotation', integer);
+	XtNxrtGraphWidth : private argument ('xrtGraphWidth', integer);
+	XtNxrtGraphWidthUseDefault : private argument ('xrtGraphWidthUseDefault', boolean);
+	XtNxrtGraphX : private argument ('xrtGraphX', integer);
+	XtNxrtGraphXUseDefault : private argument ('xrtGraphXUseDefault', boolean);
+	XtNxrtGraphY : private argument ('xrtGraphY', integer);
+	XtNxrtGraphYUseDefault : private argument ('xrtGraphYUseDefault', boolean);
+	XtNxrtHeaderAdjust : private argument ('xrtHeaderAdjust', integer);
+	XtNxrtHeaderBackgroundColor : private argument ('xrtHeaderBackgroundColor', string);
+	XtNxrtHeaderBorder : private argument ('xrtHeaderBorder', integer);
+	XtNxrtHeaderBorderWidth : private argument ('xrtHeaderBorderWidth', integer);
+	XtNxrtHeaderForegroundColor : private argument ('xrtHeaderForegroundColor', string);
+	XtNxrtHeaderX : private argument ('xrtHeaderX', integer);
+	XtNxrtHeaderXUseDefault : private argument ('xrtHeaderXUseDefault', boolean);
+	XtNxrtHeaderY : private argument ('xrtHeaderY', integer);
+	XtNxrtHeaderYUseDefault : private argument ('xrtHeaderYUseDefault', boolean);
+	XtNxrtInvertOrientation : private argument ('xrtInvertOrientation', boolean);
+	XtNxrtLegendAnchor : private argument ('xrtLegendAnchor', integer);
+	XtNxrtLegendBackgroundColor : private argument ('xrtLegendBackgroundColor', string);
+	XtNxrtLegendBorder : private argument ('xrtLegendBorder', integer);
+	XtNxrtLegendBorderWidth : private argument ('xrtLegendBorderWidth', integer);
+	XtNxrtLegendForegroundColor : private argument ('xrtLegendForegroundColor', string);
+	XtNxrtLegendOrientation : private argument ('xrtLegendOrientation', integer);
+	XtNxrtLegendShow : private argument ('xrtLegendShow', boolean);
+	XtNxrtLegendX : private argument ('xrtLegendX', integer);
+	XtNxrtLegendXUseDefault : private argument ('xrtLegendXUseDefault', boolean);
+	XtNxrtLegendY : private argument ('xrtLegendY', integer);
+	XtNxrtLegendYUseDefault : private argument ('xrtLegendYUseDefault', boolean);
+	XtNxrtMarkerDataStyleUseDefault : private argument ('xrtMarkerDataStyleUseDefault', boolean);
+	XtNxrtMarkerDataset : private argument ('xrtMarkerDataset', integer);
+	XtNxrtOtherDataStyleUseDefault : private argument ('xrtOtherDataStyleUseDefault', boolean);
+	XtNxrtOtherLabel : private argument ('xrtOtherLabel', string);
+	XtNxrtPieMinSlices : private argument ('xrtPieMinSlices', integer);
+	XtNxrtPieOrder : private argument ('xrtPieOrder', integer);
+	XtNxrtPieThresholdMethod : private argument ('xrtPieThresholdMethod', integer);
+	XtNxrtPieThresholdValue : private argument ('xrtPieThresholdValue', single_float);
+	XtNxrtRepaint : private argument ('xrtRepaint', boolean);
+	XtNxrtTblAlignmentContext : private argument ('xrtTblAlignmentContext', integer);
+	XtNxrtTimeBase : private argument ('xrtTimeBase', integer);
+	XtNxrtTimeFormat : private argument ('xrtTimeFormat', string);
+	XtNxrtTimeFormatUseDefault : private argument ('xrtTimeFormatUseDefault', boolean);
+	XtNxrtTimeUnit : private argument ('xrtTimeUnit', integer);
+	XtNxrtType : private argument ('xrtType', integer);
+	XtNxrtType2 : private argument ('xrtType2', integer);
+	XtNxrtXAnnoPlacement : private argument ('xrtXAnnoPlacement', integer);
+	XtNxrtXAnnotationMethod : private argument ('xrtXAnnotationMethod', integer);
+	XtNxrtXAnnotationRotation : private argument ('xrtXAnnotationRotation', integer);
+	XtNxrtXAxisLogarithmic : private argument ('xrtXAxisLogarithmic', boolean);
+	XtNxrtXAxisMax : private argument ('xrtXAxisMax', single_float);
+	XtNxrtXAxisMaxUseDefault : private argument ('xrtXAxisMaxUseDefault', boolean);
+	XtNxrtXAxisMin : private argument ('xrtXAxisMin', single_float);
+	XtNxrtXAxisMinUseDefault : private argument ('xrtXAxisMinUseDefault', boolean);
+	XtNxrtXAxisReversed : private argument ('xrtXAxisReversed', boolean);
+	XtNxrtXAxisShow : private argument ('xrtXAxisShow', boolean);
+	XtNxrtXGrid : private argument ('xrtXGrid', single_float);
+	XtNxrtXGridDataStyleUseDefault : private argument ('xrtXGridDataStyleUseDefault', boolean);
+	XtNxrtXGridUseDefault : private argument ('xrtXGridUseDefault', boolean);
+	XtNxrtXMarker : private argument ('xrtXMarker', single_float);
+	XtNxrtXMarkerPoint : private argument ('xrtXMarkerPoint', integer);
+	XtNxrtXMarkerSet : private argument ('xrtXMarkerSet', integer);
+	XtNxrtXMarkerShow : private argument ('xrtXMarkerShow', boolean);
+	XtNxrtXMax : private argument ('xrtXMax', single_float);
+	XtNxrtXMaxUseDefault : private argument ('xrtXMaxUseDefault', boolean);
+	XtNxrtXMin : private argument ('xrtXMin', single_float);
+	XtNxrtXMinUseDefault : private argument ('xrtXMinUseDefault', boolean);
+	XtNxrtXNum : private argument ('xrtXNum', single_float);
+	XtNxrtXNumMethod : private argument ('xrtXNumMethod', integer);
+	XtNxrtXNumUseDefault : private argument ('xrtXNumUseDefault', boolean);
+	XtNxrtXOrigin : private argument ('xrtXOrigin', single_float);
+	XtNxrtXOriginPlacement : private argument ('xrtXOriginPlacement', integer);
+	XtNxrtXOriginUseDefault : private argument ('xrtXOriginUseDefault', boolean);
+	XtNxrtXPrecision : private argument ('xrtXPrecision', integer);
+	XtNxrtXPrecisionUseDefault : private argument ('xrtXPrecisionUseDefault', boolean);
+	XtNxrtXTick : private argument ('xrtXTick', single_float);
+	XtNxrtXTickUseDefault : private argument ('xrtXTickUseDefault', boolean);
+	XtNxrtXTitle : private argument ('xrtXTitle', string);
+	XtNxrtXTitleRotation : private argument ('xrtXTitleRotation', integer);
+	XtNxrtY2AnnotationMethod : private argument ('xrtY2AnnotationMethod', integer);
+	XtNxrtY2AnnotationRotation : private argument ('xrtY2AnnotationRotation', integer);
+	XtNxrtY2AxisLogarithmic : private argument ('xrtY2AxisLogarithmic', boolean);
+	XtNxrtY2AxisMax : private argument ('xrtY2AxisMax', single_float);
+	XtNxrtY2AxisMaxUseDefault : private argument ('xrtY2AxisMaxUseDefault', boolean);
+	XtNxrtY2AxisMin : private argument ('xrtY2AxisMin', single_float);
+	XtNxrtY2AxisMinUseDefault : private argument ('xrtY2AxisMinUseDefault', boolean);
+	XtNxrtY2AxisReversed : private argument ('xrtY2AxisReversed', boolean);
+	XtNxrtY2AxisShow : private argument ('xrtY2AxisShow', boolean);
+	XtNxrtY2Max : private argument ('xrtY2Max', single_float);
+	XtNxrtY2MaxUseDefault : private argument ('xrtY2MaxUseDefault', boolean);
+	XtNxrtY2Min : private argument ('xrtY2Min', single_float);
+	XtNxrtY2MinUseDefault : private argument ('xrtY2MinUseDefault', boolean);
+	XtNxrtY2Num : private argument ('xrtY2Num', single_float);
+	XtNxrtY2NumMethod : private argument ('xrtY2NumMethod', integer);
+	XtNxrtY2NumUseDefault : private argument ('xrtY2NumUseDefault', boolean);
+	XtNxrtY2Precision : private argument ('xrtY2Precision', integer);
+	XtNxrtY2PrecisionUseDefault : private argument ('xrtY2PrecisionUseDefault', boolean);
+	XtNxrtY2Tick : private argument ('xrtY2Tick', single_float);
+	XtNxrtY2TickUseDefault : private argument ('xrtY2TickUseDefault', boolean);
+	XtNxrtY2Title : private argument ('xrtY2Title', string);
+	XtNxrtY2TitleRotation : private argument ('xrtY2TitleRotation', integer);
+	XtNxrtYAnnoPlacement : private argument ('xrtYAnnoPlacement', integer);
+	XtNxrtYAnnotationMethod : private argument ('xrtYAnnotationMethod', integer);
+	XtNxrtYAnnotationRotation : private argument ('xrtYAnnotationRotation', integer);
+	XtNxrtYAxisConst : private argument ('xrtYAxisConst', single_float);
+	XtNxrtYAxisLogarithmic : private argument ('xrtYAxisLogarithmic', boolean);
+	XtNxrtYAxisMax : private argument ('xrtYAxisMax', single_float);
+	XtNxrtYAxisMaxUseDefault : private argument ('xrtYAxisMaxUseDefault', boolean);
+	XtNxrtYAxisMin : private argument ('xrtYAxisMin', single_float);
+	XtNxrtYAxisMinUseDefault : private argument ('xrtYAxisMinUseDefault', boolean);
+	XtNxrtYAxisMult : private argument ('xrtYAxisMult', single_float);
+	XtNxrtYAxisReversed : private argument ('xrtYAxisReversed', boolean);
+	XtNxrtYAxisShow : private argument ('xrtYAxisShow', boolean);
+	XtNxrtYGrid : private argument ('xrtYGrid', single_float);
+	XtNxrtYGridDataStyleUseDefault : private argument ('xrtYGridDataStyleUseDefault', boolean);
+	XtNxrtYGridUseDefault : private argument ('xrtYGridUseDefault', boolean);
+	XtNxrtYMarker : private argument ('xrtYMarker', single_float);
+	XtNxrtYMarkerShow : private argument ('xrtYMarkerShow', boolean);
+	XtNxrtYMax : private argument ('xrtYMax', single_float);
+	XtNxrtYMaxUseDefault : private argument ('xrtYMaxUseDefault', boolean);
+	XtNxrtYMin : private argument ('xrtYMin', single_float);
+	XtNxrtYMinUseDefault : private argument ('xrtYMinUseDefault', boolean);
+	XtNxrtYNum : private argument ('xrtYNum', single_float);
+	XtNxrtYNumMethod : private argument ('xrtYNumMethod', integer);
+	XtNxrtYNumUseDefault : private argument ('xrtYNumUseDefault', boolean);
+	XtNxrtYOrigin : private argument ('xrtYOrigin', single_float);
+	XtNxrtYOriginPlacement : private argument ('xrtYOriginPlacement', integer);
+	XtNxrtYOriginUseDefault : private argument ('xrtYOriginUseDefault', boolean);
+	XtNxrtYPrecision : private argument ('xrtYPrecision', integer);
+	XtNxrtYPrecisionUseDefault : private argument ('xrtYPrecisionUseDefault', boolean);
+	XtNxrtYTick : private argument ('xrtYTick', single_float);
+	XtNxrtYTickUseDefault : private argument ('xrtYTickUseDefault', boolean);
+	XtNxrtYTitle : private argument ('xrtYTitle', string);
+	XtNxrtYTitleRotation : private argument ('xrtYTitleRotation', integer);
+
+! New resources in XRT/graph 3.0
+
+	XtNxrtAngleUnit : private argument ('xrtAngleUnit', integer);
+	XtNxrtBorder : private argument ('xrtBorder', integer);
+	XtNxrtCandleComplex : private argument ('xrtCandleComplex', boolean);
+	XtNxrtDataAreaForegroundColor : private argument ('xrtDataAreaForegroundColor', string);
+	XtNxrtGraph3dShading : private argument ('xrtGraph3dShading', integer);
+	XtNxrtGraphShowOutlines : private argument ('xrtGraphShowOutlines', boolean);
+	XtNxrtHiLoCloseShow : private argument ('xrtHiLoCloseShow', boolean);
+	XtNxrtHiLoOpenCloseFullWidth : private argument ('xrtHiLoOpenCloseFullWidth', boolean);
+	XtNxrtHiLoOpenShow : private argument ('xrtHiLoOpenShow', boolean);
+	XtNxrtPolarHalfRange : private argument ('xrtPolarHalfRange', boolean);
+	XtNxrtXAxisLabelFormat : private argument ('xrtXAxisLabelFormat', string);
+	XtNxrtXMarkerDataStyleUseDef : private argument ('xrtXMarkerDataStyleUseDefault', boolean);   ! truncated
+	XtNxrtXMarkerMethod : private argument ('xrtXMarkerMethod', integer);
+	XtNxrtXOriginBase : private argument ('xrtXOriginBase', single_float);
+	XtNxrtY2AnnoPlacement : private argument ('xrtY2AnnoPlacement', integer);
+	XtNxrtY2AnnotationAngle : private argument ('xrtY2AnnotationAngle', single_float);
+	XtNxrtY2AnnotationAngleUseDef : private argument ('xrtY2AnnotationAngleUseDefault', boolean);   ! truncated
+	XtNxrtY2Axis100Percent : private argument ('xrtY2Axis100Percent', boolean);
+	XtNxrtY2AxisLabelFormat : private argument ('xrtY2AxisLabelFormat',	string);
+	XtNxrtY2Grid : private argument ('xrtY2Grid', single_float);
+	XtNxrtY2GridDataStyleUseDefault : private argument ('xrtY2GridDataStyleUseDefault', boolean);
+	XtNxrtY2GridUseDefault : private argument ('xrtY2GridUseDefault', boolean);
+	XtNxrtY2Origin : private argument ('xrtY2Origin', single_float);
+	XtNxrtY2OriginPlacement : private argument ('xrtY2OriginPlacement', integer);
+	XtNxrtY2OriginUseDefault : private argument ('xrtY2OriginUseDefault', boolean);
+	XtNxrtYAnnotationAngle : private argument ('xrtYAnnotationAngle', single_float);
+	XtNxrtYAnnotationAngleUseDef : private argument ('xrtYAnnotationAngleUseDefault', boolean);   ! truncated
+	XtNxrtYAxis100Percent : private argument ('xrtYAxis100Percent', boolean);
+	XtNxrtYAxisLabelFormat : private argument ('xrtYAxisLabelFormat',  string);
+	XtNxrtYMarkerDataStyleUseDef : private argument ('xrtYMarkerDataStyleUseDefault', boolean);   ! truncated
+
+! New resources in XRT/graph 4.0.0
+	XtNxrtBubbleMax : private argument ('xrtBubbleMax', float);
+!	XtNxrtBubbleMethod : private argument ('xrtBubbleMethod', XrtBubbleMethod);
+	XtNxrtBubbleMin : private argument ('xrtBubbleMin', float);
+	XtNxrtExtraDefaultDataStyles : private argument ('xrtExtraDefaultDataStyles', boolean);
+!	XtNxrtFooterImage : private argument ('xrtFooterImage', XrtImage);
+	XtNxrtFooterImageLayout : private argument ('xrtFooterImageLayout', integer);
+	XtNxrtFooterImageMinimumSize : private argument ('xrtFooterImageMinimumSize', boolean);
+!	XtNxrtDataAreaImage : private argument ('xrtDataAreaImage', XrtImage);
+	XtNxrtDataAreaImageLayout : private argument ('xrtDataAreaImageLayout', integer);
+!	XtNxrtGraphImage : private argument ('xrtGraphImage', XrtImage);
+	XtNxrtGraphImageLayout : private argument ('xrtGraphImageLayout', integer);
+!	XtNxrtHeaderImage : private argument ('xrtHeaderImage', XrtImage);
+	XtNxrtHeaderImageLayout : private argument ('xrtHeaderImageLayout', integer);
+	XtNxrtHeaderImageMinimumSize : private argument ('xrtHeaderImageMinimumSize', boolean);
+!	XtNxrtImage : private argument ('xrtImage', XrtImage);
+	XtNxrtImageLayout : private argument ('xrtImageLayout', integer);
+	XtNxrtIsStacked : private argument ('xrtIsStacked', boolean);
+	XtNxrtIsStacked2 : private argument ('xrtIsStacked2', boolean);
+!	XtNxrtLegendImage : private argument ('xrtLegendImage', XrtImage);
+	XtNxrtLegendImageLayout : private argument ('xrtLegendImageLayout', integer);
+	XtNxrtLegendReversed : private argument ('xrtLegendReversed', boolean);
+	XtNxrtLegendTitle : private argument ('xrtLegendTitle', string);
+	XtNxrtPieMergeMissingSlices : private argument ('xrtPieMergeMissingSlices', boolean);
+	XtNxrtPieStartAngle : private argument ('xrtPieStartAngle', float);
+	XtNxrtPolarAxisAllowNegatives : private argument ('xrtPolarAxisAllowNegatives', boolean);
+!	XtNxrtXAxisDataStyle : private argument ('xrtXAxisDataStyle', XrtDataStyle);
+	XtNxrtXAxisDataStyleUseDefault : private argument ('xrtXAxisDataStyleUseDefault', boolean);
+!	XtNxrtY2AxisDataStyle : private argument ('xrtY2AxisDataStyle', XrtDataStyle);
+	XtNxrtY2AxisDataStyleUseDefault : private argument ('xrtY2AxisDataStyleUseDefault', boolean);
+!	XtNxrtYAxisDataStyle : private argument ('xrtYAxisDataStyle', XrtDataStyle);
+	XtNxrtYAxisDataStyleUseDefault : private argument ('xrtYAxisDataStyleUseDefault', boolean);
+
+
+! callbacks
+	XtNxrtExposeCallback : reason('xrtExposeCallback');
+	XtNxrtModifyCallback : reason('xrtModifyCallback');
+	XtNxrtResizeCallback : reason('xrtResizeCallback');
+	XtNxrtRotateCallback : reason('xrtRotateCallback');
+	XtNxrtTransformCallback : reason('xrtTransformCallback');
+	XtNxrtMapCallback : reason('xrtMapCallback');
+	XtNxrtPickCallback : reason('xrtPickCallback');
+	XtNxrtZoomAxisCallback : reason('xrtZoomAxisCallback');
+
+!
+! Resource values - values must match those in widget public header file
+!
+value
+	XRT_VERSION:	4;
+	XRT_REVISION:	0;
+	XRT_POINT:		0;
+	XRT_RELEASE:
+		XRT_VERSION * 1000 + XRT_REVISION*10 + XRT_POINT;
+	XRT_RELEASE_STRING:	"4.0.0";
+
+	XRT_MAX_PRECISION:							6;
+	XRT_DEFAULT_BORDER_WIDTH:					2;
+	XRT_MAX_BORDER_WIDTH:						20;
+	XRT_MAX_BAR_CLUSTER_OVERLAP:				200;
+	XRT_DEFAULT_BAR_CLUSTER_OVERLAP:			100;
+	XRT_MAX_BAR_CLUSTER_WIDTH:					100;
+	XRT_DEFAULT_BAR_CLUSTER_WIDTH:				50;
+	XRT_MAX_DEPTH:								500;
+	XRT_MAX_ROTATION:							45;
+	XRT_MAX_INCLINATION:						45;
+	XRT_MIN_MARGIN:								-30000;
+	XRT_MAX_MARGIN:								 30000;
+
+    XRT_ADJUST_LEFT:			1;
+    XRT_ADJUST_RIGHT:			2;
+    XRT_ADJUST_CENTER:			3;
+
+    XRT_ALIGN_VERTICAL:			1;
+    XRT_ALIGN_HORIZONTAL:		2;
+
+    XRT_ANCHOR_NORTH:			16;
+    XRT_ANCHOR_SOUTH:			32;
+    XRT_ANCHOR_EAST:			1;
+    XRT_ANCHOR_WEST:			2;
+    XRT_ANCHOR_NORTHEAST:		17;
+    XRT_ANCHOR_NORTHWEST:		18;
+    XRT_ANCHOR_SOUTHEAST:		33;
+    XRT_ANCHOR_SOUTHWEST:		34;
+    XRT_ANCHOR_HOME:			0;
+    XRT_ANCHOR_BEST:			256;
+
+    XRT_ANGLE_DEGREES:			1;
+    XRT_ANGLE_RADIANS:			2;
+    XRT_ANGLE_GRADS:			3;
+
+    XRT_ANNO_VALUES:			0;
+    XRT_ANNO_POINT_LABELS:		1;
+    XRT_ANNO_VALUE_LABELS:		2;
+    XRT_ANNO_TIME_LABELS:		3;
+
+    XRT_ANNO_AUTO:				0;
+    XRT_ANNO_ORIGIN:			1;
+    XRT_ANNO_MIN:				2;
+    XRT_ANNO_MAX:				3;
+
+    XRT_BORDER_NONE:			0;
+    XRT_BORDER_3D_OUT:			1;
+    XRT_BORDER_3D_IN:			2;
+    XRT_BORDER_SHADOW:			3;
+    XRT_BORDER_PLAIN:			4;
+    XRT_BORDER_ETCHED_IN:		5;
+    XRT_BORDER_ETCHED_OUT:		6;
+	XRT_BORDER_FRAME_IN:		7;
+	XRT_BORDER_FRAME_OUT:		8;
+	XRT_BORDER_BEVEL:			9;
+
+	XRT_DATA_ARRAY:				1;
+	XRT_DATA_GENERAL:			2;
+
+	XRT_FPAT_NONE:				1;
+	XRT_FPAT_SOLID:				2;
+	XRT_FPAT_25_PERCENT:		3;
+	XRT_FPAT_50_PERCENT:		4;
+	XRT_FPAT_75_PERCENT:		5;
+	XRT_FPAT_HORIZ_STRIPE:		6;
+	XRT_FPAT_VERT_STRIPE:		7;
+	XRT_FPAT_45_STRIPE:			8;
+	XRT_FPAT_135_STRIPE:		9;
+	XRT_FPAT_DIAG_HATCHED:		10;
+	XRT_FPAT_CROSS_HATCHED:		11;
+
+    XRT_LPAT_NONE:				1;
+    XRT_LPAT_SOLID:				2;
+    XRT_LPAT_LONG_DASH:			3;
+    XRT_LPAT_DOTTED:			4;
+    XRT_LPAT_SHORT_DASH:		5;
+    XRT_LPAT_LSL_DASH:			6;
+    XRT_LPAT_DASH_DOT:			7;
+
+    XRT_MARKER_SET_POINT:		1;
+    XRT_MARKER_VALUE:			2;
+
+    XRT_NUM_PRECISION:			0;
+    XRT_NUM_ROUND:				1;
+
+    XRT_ORIGIN_AUTO:			0;
+    XRT_ORIGIN_ZERO:			1;
+    XRT_ORIGIN_MIN:				2;
+    XRT_ORIGIN_MAX:				3;
+
+    XRT_PIE_SLICE_CUTOFF:		1;
+    XRT_PIE_PERCENTILE:			2;
+
+    XRT_PIEORDER_ASCENDING:		1;
+    XRT_PIEORDER_DESCENDING:	2;
+    XRT_PIEORDER_DATA_ORDER:	3;
+
+    XRT_POINT_NONE:				1;
+    XRT_POINT_DOT:				2;
+    XRT_POINT_BOX:				3;
+    XRT_POINT_TRI:				4;
+    XRT_POINT_DIAMOND:			5;
+    XRT_POINT_STAR:				6;
+    XRT_POINT_VERT_LINE:		7;
+    XRT_POINT_HORIZ_LINE:		8;
+    XRT_POINT_CROSS:			9;
+    XRT_POINT_CIRCLE:			10;
+    XRT_POINT_SQUARE:			11;
+
+    XRT_RGN_IN_GRAPH:			-100;
+    XRT_RGN_IN_LEGEND:			-99;
+    XRT_RGN_IN_HEADER:			-98;
+    XRT_RGN_IN_FOOTER:			-97;
+    XRT_RGN_NOWHERE:			-96;
+
+    XRT_ROTATE_NONE:			1;
+    XRT_ROTATE_90:				2;
+    XRT_ROTATE_270:				3;
+
+    XRT_SHADING_COLOR:			1;
+    XRT_SHADING_DITHERED:		2;
+    XRT_SHADING_NONE:			3;
+
+    XRT_TEXT_ATTACH_PIXEL:		0;
+    XRT_TEXT_ATTACH_VALUE:		1;
+    XRT_TEXT_ATTACH_DATA:		2;
+    XRT_TEXT_ATTACH_DATA_VALUE:	3;
+
+    XRT_TMUNIT_SECONDS:			1;
+    XRT_TMUNIT_MINUTES:			2;
+    XRT_TMUNIT_HOURS:			3;
+    XRT_TMUNIT_DAYS:			4;
+    XRT_TMUNIT_WEEKS:			5;
+    XRT_TMUNIT_MONTHS:			6;
+    XRT_TMUNIT_YEARS:			7;
+
+	XRT_TYPE_PLOT:				1;
+	XRT_TYPE_BAR:				2;
+	XRT_TYPE_PIE:				3;
+	XRT_TYPE_STACKING_BAR:		4;
+	XRT_TYPE_AREA:				5;
+	XRT_TYPE_HILO:				6;
+	XRT_TYPE_HILO_OPEN_CLOSE:	7;
+	XRT_TYPE_CANDLE:			8;
+	XRT_TYPE_POLAR:				9;
+	XRT_TYPE_RADAR:				10;
+	XRT_TYPE_FILLED_RADAR:		11;
+
+    XRT_IMAGELAYOUT_CENTERED:	1;
+    XRT_IMAGELAYOUT_TILED:		2;
+
+    XRT_REASON_MODIFY_START:	500;
+    XRT_REASON_MODIFY_END:		502;
+    XRT_REASON_ROTATE:			503;
+    XRT_REASON_TRANSFORM:		504;
+
+! widget create procedure
+!
+procedure XtCreateXrtGraph();
