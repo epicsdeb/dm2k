@@ -1,1 +1,2 @@
 dm2k-xrt-dev: unstripped-binary-or-object
+dm2k-xrt-dev: binary-or-shlib-defines-rpath

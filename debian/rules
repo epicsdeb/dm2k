@@ -10,8 +10,34 @@ XRTHOME=/opt/xrt
 XRTHOST=builder@aragon.acc.bessy.de
 SSHOPTS = -i /etc/rebuildd/mnt/id_rsa -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null 
 
+DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
+
+# Backport magic for squeeze
+ifeq "$(DEB_HOST_MULTIARCH)" ""
+
+slashtriplet :=
+DEB_USR_CXXFLAGS :=
+DEB_USR_CFLAGS := -O3
+DEB_USR_CPPFLAGS :=
+DEB_USR_LDFLAGS := -Wl,-rpath,/usr/lib$(slashtriplet)/dm2k -Wl,--as-needed
+
+else
+
+slashtriplet:="/$(DEB_HOST_MULTIARCH)"
+
 # Use rpath for shared private library location, link only --as-needed
-export DEB_LDFLAGS_MAINT_APPEND = -Wl,-rpath,/usr/lib/$(DEB_HOST_MULTIARCH)/dm2k -Wl,--as-needed
+# EPICS uses -O3, let's not lower the standards
+export DEB_LDFLAGS_MAINT_APPEND = -Wl,-rpath,/usr/lib$(slashtriplet)/dm2k -Wl,--as-needed
+export DEB_CFLAGS_STRIP = -g -O2
+export DEB_CXXFLAGS_STRIP = -g -O2
+
+# Add Debian flags to the EPICS build
+DEB_USR_CXXFLAGS:=$(shell dpkg-buildflags --get CXXFLAGS)
+DEB_USR_CFLAGS:=$(shell dpkg-buildflags --get CFLAGS)
+DEB_USR_CPPFLAGS:=$(shell dpkg-buildflags --get CPPFLAGS)
+DEB_USR_LDFLAGS:=$(shell dpkg-buildflags --get LDFLAGS)
+
+endif
 
 ifeq "$(DEB_BUILD_ARCH)" "i386"
 EPICS_HOST_ARCH:=linux-x86
@@ -20,8 +46,6 @@ EPICS_HOST_ARCH:=linux-x86_64
 else
 EPICS_HOST_ARCH:=$(shell /usr/lib/epics/startup/EpicsHostArch)
 endif
-
-DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
 
 DEB_VERSION := $(shell dpkg-parsechangelog | egrep '^Version:' | cut -f 2 -d ' ')
 DEB_NOEPOCH_VERSION := $(shell echo $(DEB_VERSION) | cut -d: -f2-)
@@ -39,7 +63,7 @@ dm2klibs += Unix
 
 instroot=$(CURDIR)/debian/tmp
 bindir=$(instroot)/usr/bin
-libdir=$(instroot)/usr/lib/$(DEB_HOST_MULTIARCH)
+libdir=$(instroot)/usr/lib$(slashtriplet)
 
 epicsroot=$(instroot)/usr/lib/epics
 epicslibs=$(epicsroot)/lib/$(EPICS_HOST_ARCH)
@@ -58,13 +82,14 @@ override_dh_auto_clean:
 override_dh_auto_build:
 	ln -sf /usr/lib/epics/extensions/configure .
 	dh_auto_build -- SHARED_LIBRARIES=YES STATIC_BUILD=NO SHRLIB_VERSION=$(SOV) USER=Debian XRTHOME=$(XRTHOME) \
-	USR_LDFLAGS_Linux="`dpkg-buildflags --get LDFLAGS`" \
-	USR_CFLAGS_Linux="`dpkg-buildflags --get CFLAGS`" \
-	USR_CPPFLAGS_Linux="`dpkg-buildflags --get CPPFLAGS`"
+	USR_CFLAGS_Linux="$(DEB_USR_CFLAGS)" \
+	USR_CXXFLAGS_Linux="$(DEB_USR_CXXFLAGS)" \
+	USR_CPPFLAGS_Linux="$(DEB_USR_CPPFLAGS)" \
+	USR_LDFLAGS_Linux="$(DEB_USR_LDFLAGS)"
 
 override_dh_auto_install:
 	dh_auto_install -- SHARED_LIBRARIES=YES STATIC_BUILD=NO SHRLIB_VERSION=$(SOV) \
-	USR_LDFLAGS_Linux="`dpkg-buildflags --get LDFLAGS`"
+	USR_LDFLAGS_Linux="$(DEB_USR_LDFLAGS)"
 
 override_dh_install:
 	install -d $(bindir)
@@ -89,12 +114,8 @@ endif
 	for ff in $(dm2klibs);do \
 		mv $(libdir)/lib$$ff.so.$(SOV) $(libdir)/dm2k; \
 		rm -f $(epicslibs)/lib$$ff.so; \
-		ln -s ../../../$(DEB_HOST_MULTIARCH)/dm2k/lib$$ff.so.$(SOV) $(epicslibs)/lib$$ff.so; \
+		ln -s ../../..$(slashtriplet)/dm2k/lib$$ff.so.$(SOV) $(epicslibs)/lib$$ff.so; \
 	done
-
-
-	ls -alR $(instroot)
-
 
 	dh_install
 

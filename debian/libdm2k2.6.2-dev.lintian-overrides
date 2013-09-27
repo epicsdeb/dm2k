@@ -1,2 +1,3 @@
 libdm2k2.6.2-dev: unstripped-binary-or-object
 libdm2k2.6.2-dev: arch-dependent-file-not-in-arch-specific-directory
+libdm2k2.6.2-dev: binary-or-shlib-defines-rpath

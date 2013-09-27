@@ -1,1 +1,2 @@
 dm2k-jpt-dev: unstripped-binary-or-object
+dm2k-jpt-dev: binary-or-shlib-defines-rpath

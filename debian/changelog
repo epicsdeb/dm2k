@@ -1,3 +1,9 @@
+dm2k (2.6.2+20120423-3) unstable; urgency=low
+
+  * debian/rules: fixes for easier backporting to squeeze (non Multi-Arch)
+
+ -- Ralph Lange <Ralph.Lange@gmx.de>  Fri, 27 Sep 2013 16:50:20 +0200
+
 dm2k (2.6.2+20120423-2) unstable; urgency=low
 
   * debian/control: fix minor Multi-Arch issue
