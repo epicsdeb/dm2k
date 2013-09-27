@@ -39,7 +39,7 @@ dm2klibs += Unix
 
 instroot=$(CURDIR)/debian/tmp
 bindir=$(instroot)/usr/bin
-libdir=$(instroot)/usr/lib
+libdir=$(instroot)/usr/lib/$(DEB_HOST_MULTIARCH)
 
 epicsroot=$(instroot)/usr/lib/epics
 epicslibs=$(epicsroot)/lib/$(EPICS_HOST_ARCH)
@@ -68,7 +68,7 @@ override_dh_auto_install:
 
 override_dh_install:
 	install -d $(bindir)
-	install -d $(libdir)/$(DEB_HOST_MULTIARCH)/dm2k
+	install -d $(libdir)/dm2k
 
 ifeq "$(DEB_BUILD_ARCH)" "i386"
 ifdef XRTHOME
@@ -85,26 +85,27 @@ endif
 	install -m 755 -t $(bindir) $(epicsbins)/*
 	rm -rf $(epicsbins)
 
-	# This works for non-Multi-Arch EPICS base and has to be changed later on ##########
-	# Private libraries go in /usr/lib/dm2k
+	# These are private libraries, and go into /usr/lib/$(DEB_HOST_MULTIARCH)/dm2k
 	for ff in $(dm2klibs);do \
-		mv $(libdir)/lib$$ff.so.$(SOV) $(libdir)/$(DEB_HOST_MULTIARCH)/dm2k; \
+		mv $(libdir)/lib$$ff.so.$(SOV) $(libdir)/dm2k; \
 		rm -f $(epicslibs)/lib$$ff.so; \
 		ln -s ../../../$(DEB_HOST_MULTIARCH)/dm2k/lib$$ff.so.$(SOV) $(epicslibs)/lib$$ff.so; \
 	done
 
+
+	ls -alR $(instroot)
+
+
 	dh_install
 
-override_dh_installchangelogs:
-	dh_installchangelogs
-
-	# Use links for dm2k-*-dev
-	rm -fr $(CURDIR)/debian/dm2k-jpt-dev/usr/share/doc/dm2k-jpt-dev
+override_dh_installdocs:
+	install -d $(CURDIR)/debian/dm2k-jpt-dev/usr/share/doc
 	ln -s dm2k-jpt $(CURDIR)/debian/dm2k-jpt-dev/usr/share/doc/dm2k-jpt-dev
 ifeq "$(DEB_BUILD_ARCH)" "i386"
-	rm -fr $(CURDIR)/debian/dm2k-xrt-dev/usr/share/doc/dm2k-xrt-dev
+	install -d $(CURDIR)/debian/dm2k-xrt-dev/usr/share/doc
 	ln -s dm2k-xrt $(CURDIR)/debian/dm2k-xrt-dev/usr/share/doc/dm2k-xrt-dev
 endif
+	dh_installdocs
 
 override_dh_makeshlibs:
 	# Only private libraries: do not add calls to ldscripts in postinst and postrm scripts

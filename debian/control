@@ -2,8 +2,8 @@ Source: dm2k
 Section: non-free/x11
 Priority: extra
 Maintainer: Ralph Lange <Ralph.Lange@gmx.de>
-Build-Depends: debhelper (>= 9), epics-debhelper (>= 8.7~),
-               epics-dev (>= 3.14.11-2),
+Build-Depends: debhelper (>= 9), epics-debhelper (>= 8.10~),
+               epics-dev (>= 3.14.12.3-7~),
                epics-extensions-dev (>= 20130514.2~),
                libmotif-dev, libxt-dev, libxmu-dev,
                libxp-dev, libx11-dev,
@@ -49,7 +49,7 @@ Section: non-free/devel
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends},
          dm2k-jpt (= ${binary:Version}), libdm2k2.6.2-dev (= ${binary:Version}),
-         epics-dev (>= 3.14.11-2),
+         epics-dev (>= 3.14.12.3-7~),
          epics-extensions-dev (>= 20130514.2~),
          libmotif-dev, libxt-dev, libxmu-dev,
          libxp-dev, libx11-dev
@@ -75,7 +75,7 @@ Section: non-free/devel
 Architecture: i386
 Depends: ${shlibs:Depends}, ${misc:Depends},
          dm2k-xrt (= ${binary:Version}), libdm2k2.6.2-dev (= ${binary:Version}),
-         epics-dev (>= 3.14.11-2),
+         epics-dev (>= 3.14.12.3-7~),
          epics-extensions-dev (>= 20130514.2~),
          libmotif-dev, libxt-dev, libxmu-dev,
          libxp-dev, libx11-dev

@@ -1,4 +1,4 @@
-dm2k (2.6.2+20120423-2) UNRELEASED; urgency=low
+dm2k (2.6.2+20120423-2) unstable; urgency=low
 
   * debian/control: fix minor Multi-Arch issue
 
